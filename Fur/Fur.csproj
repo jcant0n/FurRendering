@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Content\FurRendering\Leopard.ktx" />
+    <None Remove="Content\FurRendering\Shaders\HLSL\HLSL.fx" />
+    <None Remove="Content\FurRendering\Tiger.ktx" />
+    <None Remove="Content\FurRendering\Zebra.ktx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Content\FurRendering\Leopard.ktx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\FurRendering\Shaders\HLSL\HLSL.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\FurRendering\Tiger.ktx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\FurRendering\Zebra.ktx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WaveEngine.Common" Version="3.0.0.2860-preview" />
+    <PackageReference Include="WaveEngine.DirectX11" Version="3.0.0.2860-preview" />
+    <PackageReference Include="WaveEngine.Forms" Version="3.0.0.2860-preview" />
+    <PackageReference Include="WaveEngine.Mathematics" Version="3.0.0.2860-preview" />
+  </ItemGroup>
+
+</Project>
