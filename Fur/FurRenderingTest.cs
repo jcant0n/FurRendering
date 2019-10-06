@@ -69,7 +69,7 @@ namespace Fur
             var vertexBufferDescription = new BufferDescription((uint)Unsafe.SizeOf<VertexPositionNormalTexture>() * (uint)vertexData.Length, BufferFlags.VertexBuffer, ResourceUsage.Default);
             var vertexBuffer = this.graphicsContext.Factory.CreateBuffer(vertexData, ref vertexBufferDescription);
 
-            this.view = Matrix4x4.CreateLookAt(new Vector3(0, 0, 4.5f), new Vector3(0, 0, 0), Vector3.UnitY);
+            this.view = Matrix4x4.CreateLookAt(new Vector3(0, 0, 4f), new Vector3(0, 0, 0), Vector3.UnitY);
             this.proj = Matrix4x4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, (float)this.frameBuffer.Width / (float)this.frameBuffer.Height, 0.1f, 100f);
 
             // Parameters
@@ -108,12 +108,12 @@ namespace Fur
             byte[] data = new byte[totalPixels];
 
             int strands = (int)(density * totalPixels);
-
+            int minValue = (int)(minHairLength * 255f);
             for (int i = 0; i < strands; i++)
             {
                 int x = rand.Next((int)size);
                 int y = rand.Next((int)size);
-                data[(x * size) + y] = (byte)rand.Next(50, 255);
+                data[(x * size) + y] = (byte)rand.Next(minValue, 255);
             }
 
             this.graphicsContext.UpdateTextureData(textureFur, data);
@@ -201,7 +201,7 @@ namespace Fur
 
             commandBuffer.UpdateBufferData(this.constantBuffer, ref this.parameters);
 
-            RenderPassDescription renderPassDescription = new RenderPassDescription(this.frameBuffer, new ClearValue(ClearFlags.Target, Color.CornflowerBlue));
+            RenderPassDescription renderPassDescription = new RenderPassDescription(this.frameBuffer, new ClearValue(ClearFlags.Target, Color.Black));
             commandBuffer.BeginRenderPass(ref renderPassDescription);
 
             commandBuffer.SetViewports(this.viewports);
