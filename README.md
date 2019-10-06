@@ -12,6 +12,11 @@ Texture Size = 1024
 ![alt Leopard](https://github.com/jcant0n/FurRendering/blob/master/Capture1.JPG)
 ![alt Tiger](https://github.com/jcant0n/FurRendering/blob/master/Capture2.JPG)
 ![alt Zebra](https://github.com/jcant0n/FurRendering/blob/master/Capture3.JPG)
+![alt Cheetah](https://github.com/jcant0n/FurRendering/blob/master/Capture4.JPG)
+![alt GrayLeopard](https://github.com/jcant0n/FurRendering/blob/master/Capture5.JPG)
+
+#### Using displacement factor: 
+![alt Cat](https://github.com/jcant0n/FurRendering/blob/master/Capture6.JPG)
 
 #### Closer view using 200 layers: 
 ![alt View](https://github.com/jcant0n/FurRendering/blob/master/Capture.JPG)

@@ -1,6 +1,10 @@
+//#define DEBUGCOLOR
+//#define DISPLACEMENT
+
 cbuffer Parameters : register(b0)
 {
 	float4x4 worldViewProj;
+	float3 displacement;
 	float MaxHairLength;
 	float numLayers;
 	float startShadowValue;
@@ -34,8 +38,12 @@ PS_IN VS(VS_IN input)
 
 	float currentLayer = input.iid / numLayers;
 	float3 pos = input.position + (input.normal * currentLayer) * MaxHairLength;
+
+#ifdef DISPLACEMENT
 	float displacementFactor = pow(currentLayer, 3);
-	pos += float3(0.0, -0.05, 0.0) * displacementFactor;
+	pos += displacement * displacementFactor;
+#endif
+
 	output.position = mul(float4(pos, 1.0), worldViewProj);
 	output.texCoord = input.texCoord;
 	output.layer = currentLayer;
@@ -51,6 +59,10 @@ float4 PS(PS_IN input) : SV_Target
 		discard;
 
 	float4 color = DiffuseTexture.Sample(Sampler1, input.texCoord);
+
+#ifdef DEBUGCOLOR
+	color = float4(1, 1, 0, 1);
+#endif
 
 	color *= input.shadow;
 

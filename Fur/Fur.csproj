@@ -15,14 +15,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Content\FurRendering\Cat.ktx" />
     <None Remove="Content\FurRendering\Leopard.ktx" />
+    <None Remove="Content\FurRendering\Normal.ktx" />
     <None Remove="Content\FurRendering\Shaders\HLSL\HLSL.fx" />
     <None Remove="Content\FurRendering\Tiger.ktx" />
     <None Remove="Content\FurRendering\Zebra.ktx" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Content\FurRendering\Cat.ktx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\FurRendering\Leopard.ktx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\FurRendering\Normal.ktx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\FurRendering\Shaders\HLSL\HLSL.fx">
@@ -41,6 +49,15 @@
     <PackageReference Include="WaveEngine.DirectX11" Version="3.0.0.2860-preview" />
     <PackageReference Include="WaveEngine.Forms" Version="3.0.0.2860-preview" />
     <PackageReference Include="WaveEngine.Mathematics" Version="3.0.0.2860-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Content\FurRendering\Cheetah.ktx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\FurRendering\GrayLeopard.ktx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

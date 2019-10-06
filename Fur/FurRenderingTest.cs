@@ -35,19 +35,22 @@ namespace Fur
             new VertexPositionNormalTexture(new Vector3(1.0f,  -1.0f,  1.0f), new Vector3(0.0f, 0.0f,  1.0f), new Vector2(1, 1)),
         };
 
-        [StructLayout(LayoutKind.Explicit, Size = 80)]
+        [StructLayout(LayoutKind.Explicit, Size = 96)]
         struct Parameters
         {
             [FieldOffset(0)]
             public Matrix4x4 viewProj;
 
             [FieldOffset(64)]
+            public Vector3 displacement;
+
+            [FieldOffset(76)]
             public float MaxHairLength;
 
-            [FieldOffset(68)]
+            [FieldOffset(80)]
             public float numLayers;
 
-            [FieldOffset(72)]
+            [FieldOffset(84)]
             public float startShadowValue;
         }
 
@@ -69,13 +72,14 @@ namespace Fur
             var vertexBufferDescription = new BufferDescription((uint)Unsafe.SizeOf<VertexPositionNormalTexture>() * (uint)vertexData.Length, BufferFlags.VertexBuffer, ResourceUsage.Default);
             var vertexBuffer = this.graphicsContext.Factory.CreateBuffer(vertexData, ref vertexBufferDescription);
 
-            this.view = Matrix4x4.CreateLookAt(new Vector3(0, 0, 3f), new Vector3(0, 0, 0), Vector3.UnitY);
+            this.view = Matrix4x4.CreateLookAt(new Vector3(0, 0, 4f), new Vector3(0, 0, 0), Vector3.UnitY);
             this.proj = Matrix4x4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, (float)this.frameBuffer.Width / (float)this.frameBuffer.Height, 0.1f, 100f);
 
             // Parameters
             float density = 0.4f;
             float minHairLength = 0.5f;
             this.parameters = new Parameters();
+            this.parameters.displacement = new Vector3(0, -0.05f, 0);
             this.parameters.numLayers = 50f;
             this.parameters.startShadowValue = 0.2f;
             this.parameters.MaxHairLength = 0.2f;
@@ -118,9 +122,14 @@ namespace Fur
 
             this.graphicsContext.UpdateTextureData(textureFur, data);
 
-            // Create Texture from file
+            // Color Texture
             Texture texture2D = null;
+            ////using (var stream = this.assetsDirectory.Open("Cat.ktx"))
             using (var stream = this.assetsDirectory.Open("Leopard.ktx"))
+            ////using (var stream = this.assetsDirectory.Open("Cheetah.ktx"))
+            ////using (var stream = this.assetsDirectory.Open("GrayLeopard.ktx"))
+            ////using (var stream = this.assetsDirectory.Open("Tiger.ktx"))
+            ////using (var stream = this.assetsDirectory.Open("Zebra.ktx"))
             {
                 if (stream != null)
                 {
