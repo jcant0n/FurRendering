@@ -1,5 +1,5 @@
 # FurRendering
-Test fur rendering shells technique, rendered using instancing and alphatest.
+Fur rendering test based on shells technique, rendered using instancing and alphatest.
 
 #### Testing Parameters: 
 density = 0.4
