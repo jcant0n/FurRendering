@@ -45,7 +45,7 @@ PS_IN VS(VS_IN input)
 float4 PS(PS_IN input) : SV_Target
 {
 	float furData = FurTexture.Sample(Sampler2, input.texCoord).r;
-	if (input.layer > 0 && furData == 0)
+	if (input.layer > 0 && (furData == 0 || furData < input.layer))
 		discard;
 
 	float4 color = DiffuseTexture.Sample(Sampler1, input.texCoord);

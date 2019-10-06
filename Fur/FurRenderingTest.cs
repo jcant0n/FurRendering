@@ -73,10 +73,10 @@ namespace Fur
             this.proj = Matrix4x4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, (float)this.frameBuffer.Width / (float)this.frameBuffer.Height, 0.1f, 100f);
 
             // Parameters
-            float density = 0.1f;
+            float density = 0.4f;
             float minHairLength = 0.5f;
             this.parameters = new Parameters();
-            this.parameters.numLayers = 40f;
+            this.parameters.numLayers = 50f;
             this.parameters.startShadowValue = 0.2f;
             this.parameters.MaxHairLengh = 0.2f;
             this.parameters.viewProj = Matrix4x4.Multiply(this.view, this.proj);
@@ -86,7 +86,7 @@ namespace Fur
             this.constantBuffer = this.graphicsContext.Factory.CreateBuffer(ref this.parameters, ref constantBufferDescription);
 
             // Create FurTexture
-            uint size = 512;
+            uint size = 1024;
             var description = new TextureDescription()
             {
                 Type = TextureType.Texture2D,
@@ -130,8 +130,11 @@ namespace Fur
                 }
             }
 
-            SamplerStateDescription samplerDescription = SamplerStates.LinearClamp;
-            var sampler = this.graphicsContext.Factory.CreateSamplerState(ref samplerDescription);
+            SamplerStateDescription sampler1Description = SamplerStates.LinearClamp;
+            var sampler1 = this.graphicsContext.Factory.CreateSamplerState(ref sampler1Description);
+
+            SamplerStateDescription sampler2Description = SamplerStates.PointClamp;
+            var sampler2 = this.graphicsContext.Factory.CreateSamplerState(ref sampler2Description);
 
             // Prepare Pipeline
             var vertexLayouts = new InputLayouts()
@@ -146,7 +149,7 @@ namespace Fur
 
             ResourceLayout resourcesLayout = this.graphicsContext.Factory.CreateResourceLayout(ref layoutDescription);
 
-            ResourceSetDescription resourceSetDescription = new ResourceSetDescription(resourcesLayout, this.constantBuffer, texture2D, textureFur, sampler, sampler);
+            ResourceSetDescription resourceSetDescription = new ResourceSetDescription(resourcesLayout, this.constantBuffer, texture2D, textureFur, sampler1, sampler2);
             this.resourceSet = this.graphicsContext.Factory.CreateResourceSet(ref resourceSetDescription);
 
             var pipelineDescription = new GraphicsPipelineDescription()
