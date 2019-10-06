@@ -1,7 +1,7 @@
 cbuffer Parameters : register(b0)
 {
 	float4x4 worldViewProj;
-	float MaxHairLengh;
+	float MaxHairLength;
 	float numLayers;
 	float startShadowValue;
 };
@@ -33,7 +33,7 @@ PS_IN VS(VS_IN input)
 	PS_IN output = (PS_IN)0;
 
 	float currentLayer = input.iid / numLayers;
-	float3 pos = input.position + (input.normal * currentLayer) * MaxHairLengh;
+	float3 pos = input.position + (input.normal * currentLayer) * MaxHairLength;
 	output.position = mul(float4(pos, 1.0), worldViewProj);
 	output.texCoord = input.texCoord;
 	output.layer = currentLayer;

@@ -42,7 +42,7 @@ namespace Fur
             public Matrix4x4 viewProj;
 
             [FieldOffset(64)]
-            public float MaxHairLengh;
+            public float MaxHairLength;
 
             [FieldOffset(68)]
             public float numLayers;
@@ -78,7 +78,7 @@ namespace Fur
             this.parameters = new Parameters();
             this.parameters.numLayers = 50f;
             this.parameters.startShadowValue = 0.2f;
-            this.parameters.MaxHairLengh = 0.2f;
+            this.parameters.MaxHairLength = 0.2f;
             this.parameters.viewProj = Matrix4x4.Multiply(this.view, this.proj);
 
             // Constant Buffer
