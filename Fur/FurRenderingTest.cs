@@ -69,7 +69,7 @@ namespace Fur
             var vertexBufferDescription = new BufferDescription((uint)Unsafe.SizeOf<VertexPositionNormalTexture>() * (uint)vertexData.Length, BufferFlags.VertexBuffer, ResourceUsage.Default);
             var vertexBuffer = this.graphicsContext.Factory.CreateBuffer(vertexData, ref vertexBufferDescription);
 
-            this.view = Matrix4x4.CreateLookAt(new Vector3(0, 0, 4f), new Vector3(0, 0, 0), Vector3.UnitY);
+            this.view = Matrix4x4.CreateLookAt(new Vector3(0, 0, 3f), new Vector3(0, 0, 0), Vector3.UnitY);
             this.proj = Matrix4x4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, (float)this.frameBuffer.Width / (float)this.frameBuffer.Height, 0.1f, 100f);
 
             // Parameters

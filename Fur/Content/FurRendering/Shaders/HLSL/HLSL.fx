@@ -34,6 +34,8 @@ PS_IN VS(VS_IN input)
 
 	float currentLayer = input.iid / numLayers;
 	float3 pos = input.position + (input.normal * currentLayer) * MaxHairLength;
+	float displacementFactor = pow(currentLayer, 3);
+	pos += float3(0.0, -0.05, 0.0) * displacementFactor;
 	output.position = mul(float4(pos, 1.0), worldViewProj);
 	output.texCoord = input.texCoord;
 	output.layer = currentLayer;
@@ -49,7 +51,6 @@ float4 PS(PS_IN input) : SV_Target
 		discard;
 
 	float4 color = DiffuseTexture.Sample(Sampler1, input.texCoord);
-	//float4 color = float4(1, 1, 0, 1);
 
 	color *= input.shadow;
 
