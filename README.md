@@ -16,6 +16,7 @@ Texture Size = 1024
 ![alt GrayLeopard](https://github.com/jcant0n/FurRendering/blob/master/Capture5.JPG)
 
 #### Using displacement factor: 
+displacement = (0, -0.05, 0)
 ![alt Cat](https://github.com/jcant0n/FurRendering/blob/master/Capture6.JPG)
 
 #### Closer view using 200 layers: 
